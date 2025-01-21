@@ -15,7 +15,8 @@ const movieService = {
         const newId=uuid();
         movies.push({
             id: newId,
-            ...movieData
+            ...movieData,
+            rating: movieData.rating
         })
         return newId
     }
