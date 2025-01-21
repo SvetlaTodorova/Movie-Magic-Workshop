@@ -2,7 +2,7 @@ import movies from "../movies.js";
 
 const movieService = {
     getOne(movieId){
-        const result=movies.find(movieId => movies.id == movieId);
+        const result=movies.find(movie => movie.id == movieId);
         return result
     }
 
