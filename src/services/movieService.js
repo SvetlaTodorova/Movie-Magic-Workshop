@@ -11,7 +11,7 @@ const movieService = {
         const result=movies.find(movie => movie.id == movieId);
         return result
     },
-    create(movieData) {
+    create(movieData) { 
         const newId=uuid();
         movies.push({
             id: newId,
