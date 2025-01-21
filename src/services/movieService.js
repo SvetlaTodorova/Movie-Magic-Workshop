@@ -2,6 +2,9 @@ import movies from "../movies.js";
 import {v4 as uuid} from 'uuid'
 
 const movieService = {
+    getAll() {
+        return movies
+    },
     getOne(movieId){
 
         // TO DO: if movie is missing?
