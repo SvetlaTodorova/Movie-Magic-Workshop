@@ -15,7 +15,7 @@ const movieService = {
 
         if (filter.year) {
             result = result.filter(movie => Number(movie.year) === Number(filter.year))
-        }
+        } 
 
         return result
     },
