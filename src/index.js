@@ -6,8 +6,11 @@ import mongoose from 'mongoose';
 
 const app=express();
 
+
+
+
 try{
-    const uri='mongodb://localhost:27017/magicMovies'
+    const uri='mongodb://localhost:27017/magic-movies'
     await mongoose.connect(uri);
 
     console.log('DB is conected successfully')
@@ -20,6 +23,9 @@ catch(err) {
 
 app.engine('hbs', handlebars.engine({
     extname: 'hbs',
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+    },
     helpers:{
         showRating: showRatingHelper
     }

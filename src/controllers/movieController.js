@@ -6,6 +6,7 @@ const movieController=Router()
 movieController.get('/search', (req,res) => {
     const filter=req.query;
     const movies=movieService.getAll(filter);
+    console.log(movies)
     res.render('search', { movies, filter })
 })
 
