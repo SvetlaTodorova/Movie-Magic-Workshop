@@ -24,7 +24,7 @@ const movieService = {
     getOne(movieId){
 
         // TO DO: if movie is missing?
-        const result=movies.find(movie => movie.id == movieId);
+        const result=Movie.findById(movieId);
         return result
     },
     create(movieData) { 
