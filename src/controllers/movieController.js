@@ -6,7 +6,6 @@ const movieController=Router()
 movieController.get('/search', async (req,res) => {
     const filter=req.query;
     const movies=await movieService.getAll(filter);
-    console.log(movies)
     res.render('search', { movies, filter })
 })
 
@@ -21,9 +20,9 @@ movieController.get('/:movieId/details', async (req, res) => {
 ;
 });
 
-movieController.post('/create', (req, res) => {
+movieController.post('/create', async (req, res) => {
     const newMovie= req.body;
-    movieService.create(newMovie);
+    await movieService.create(newMovie);
     res.redirect('/')
 });
 
