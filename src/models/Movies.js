@@ -1,4 +1,4 @@
-import mongoose, { Schema, model } from "mongoose";
+import mongoose, { Schema, model, Types } from "mongoose";
 
 const movieSchema = new Schema({
       
@@ -10,6 +10,10 @@ const movieSchema = new Schema({
         imageUrl: String,
         rating: Number,
         description: String,
+        casts: [{
+            type: Types.ObjectId,
+            ref: 'Cast'
+        }]
 
 });
 
