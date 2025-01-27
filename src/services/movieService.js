@@ -1,5 +1,6 @@
 
 
+
 import Movie from '../models/Movies.js';
 
 const movieService = {
@@ -25,7 +26,7 @@ const movieService = {
     getOne(movieId){
 
         // TO DO: if movie is missing?
-        const result=Movie.findById(movieId);
+        const result=Movie.findById(movieId).populate('casts');
         return result
     },
     create(movieData) { 
@@ -35,8 +36,15 @@ const movieService = {
             year: Number(movieData.year),
         })
         return result
+    },
+    async attachCast(movieId, castId){
+        const movie = await Movie.findById(movieId);
+        movie.casts.push(castId)
+        await movie.save()
+        return movie
     }
 
 }
+
 
 export default movieService

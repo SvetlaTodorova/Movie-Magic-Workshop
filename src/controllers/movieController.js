@@ -17,7 +17,8 @@ movieController.get('/create', (req, res) => {
 movieController.get('/:movieId/details', async (req, res) => {
     const movieId=req.params.movieId;
     const movie=await movieService.getOne(movieId)
-    res.render('details', {movie});
+    res.render('movie/details', {movie});
+   
 ;
 });
 
@@ -33,7 +34,18 @@ movieController.get('/:movieId/attach-cast', async (req, res) => {
     const movie= await movieService.getOne(movieId);
     const casts= await castService.getAll()
 
+
     res.render('movie/attach-cast', { movie, casts })
+});
+
+movieController.post('/:movieId/attach-cast', async (req, res) => {
+    const movieId=req.params.movieId;
+    const castId=req.body.cast;
+
+    await movieService.attachCast(movieId, castId);
+
+    res.redirect(`/movies/${movieId}/details`)
+
 })
 
 
