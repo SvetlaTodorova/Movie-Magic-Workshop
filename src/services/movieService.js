@@ -3,21 +3,22 @@ import {v4 as uuid} from 'uuid';
 import Movie from '../models/Movies.js';
 
 const movieService = {
-      async getAll(filter={}) {
-         let result= await Movie.find({});
-         console.log(result)
+       getAll(filter={}) {
+         let result= Movie.find({});
 
-    //     if (filter.search) {
-    //         result=result.filter(movie => movie.title.toLowerCase().includes(filter.search.toLowerCase()))
-    //     };
+         //TODO to make it case insensitive
+        
+        if (filter.search) {
+            result=result.find({title: filter.search})
+        };
 
-    //     if (filter.genre) {
-    //         result = result.filter(movie => movie.genre.toLowerCase() === filter.genre.toLowerCase())
-    //     };
+        if (filter.genre) {
+            result=result.find({genre: filter.genre})
+        };
 
-    //     if (filter.year) {
-    //         result = result.filter(movie => Number(movie.year) === Number(filter.year))
-    //     } 
+        if (filter.year) {
+            result = result.find({year: Number(filter.year)})
+        } 
 
         return result
     },
