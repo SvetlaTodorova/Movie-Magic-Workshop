@@ -7,7 +7,7 @@ const routes=Router()
 
 routes.use(homeController);
 routes.use('/movies', movieController);
-routes.use ('cast', castController)
+routes.use ('/cast', castController)
 
 
 routes.get('*', (req, res)=>{
