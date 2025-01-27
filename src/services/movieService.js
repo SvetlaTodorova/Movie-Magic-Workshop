@@ -32,7 +32,7 @@ const movieService = {
         const result= Movie.create({
             ...movieData,
             rating: Number(movieData.rating),
-            year: Number(movieData.year)
+            year: Number(movieData.year),
         })
         return result
     }
