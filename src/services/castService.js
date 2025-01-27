@@ -4,6 +4,10 @@ const castService = {
     create(castData) {
     return Cast.create(castData)
 
+    },
+    getAll() {
+        return Cast.find({})
+
     }
 }
 
