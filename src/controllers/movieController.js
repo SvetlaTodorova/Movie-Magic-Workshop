@@ -26,5 +26,10 @@ movieController.post('/create', async (req, res) => {
     res.redirect('/')
 });
 
+movieController.get('/:movieId/attach-cast', (req, res) => {
+
+    res.render('movie/attach-cast')
+})
+
 
 export default movieController
