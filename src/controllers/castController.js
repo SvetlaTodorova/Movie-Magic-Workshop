@@ -4,7 +4,7 @@ import castService from "../services/castService.js";
 const castController = Router();
 
 castController.get('/create', (req, res) => {
-    res.render('cast/create')
+    res.render('casts/create')
 
 })
 
