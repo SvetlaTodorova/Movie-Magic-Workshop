@@ -8,5 +8,14 @@ export default {
         userData.password =  await bcrypt.hash(userData.password, salt)
         
         return User.create(userData);
+    };
+    async login(email, password) {
+
+        const user= await User.findOne(email);
+
+        if(!user) {
+            throw new Error('Invalid email')
+        }
+
     }
 }
