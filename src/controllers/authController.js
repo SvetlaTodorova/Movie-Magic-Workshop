@@ -1,7 +1,9 @@
 import { Router } from "express";
 import authService from "../services/authService.js";
 
+
 const authController = Router();
+
 
 authController.get('/register', (req, res) =>{
     res.render('auth/register');
@@ -23,13 +25,16 @@ authController.get('/login', (req,res) => {
 authController.post('/login',async (req, res) => {
     const {email, password} = req.body;
     try{  
-        await authService.login(email, password);
-         res.redirect('/')}
+        const token= await authService.login(email, password);
+        console.log(token)
+        res.redirect('/')}
     catch(err) {
         console.log(err.message);
         res.redirect('/404')
      }
- 
+
+
+   
 })
 
 
