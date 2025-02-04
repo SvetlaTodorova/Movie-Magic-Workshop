@@ -50,6 +50,20 @@ movieController.post('/:movieId/attach-cast', async (req, res) => {
 
     res.redirect(`/movies/${movieId}/details`)
 
+}),
+
+movieController.get('/:movieId/delete', (req, res) => {
+    const movieId=req.params.movieId;
+    console.log(movieId)
+
+    movieService.delete(movieId);
+    res.redirect('/')
+
+
+}),
+
+movieController.get('/:movieId/edit', (req,res) => {
+    res.render('movie/edit')
 })
 
 
