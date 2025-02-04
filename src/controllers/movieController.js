@@ -67,10 +67,18 @@ movieController.get('/:movieId/edit', async (req,res) => {
     const movie=await movieService.getOne(movieId);
 
     const categories= getCategoriesViewData(movie.category);
-    console.log(movie.category)
-    console.log(categories)
+
     res.render('movie/edit', {movie, categories})
 });
+
+movieController.post('/:movieId/edit', async (req,res) =>{
+    const movieData=req.body;
+    const movieId=req.params.movieId;
+    
+    await movieService.update(movieId, movieData);
+    
+    res.redirect(`/movies/${movieId}/details`)
+})
 
 function getCategoriesViewData(category) {
     const categoriesMap = {
