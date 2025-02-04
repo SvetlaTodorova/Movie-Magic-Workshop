@@ -17,7 +17,9 @@ movieController.get('/create', (req, res) => {
 movieController.get('/:movieId/details', async (req, res) => {
     const movieId=req.params.movieId;
     const movie=await movieService.getOne(movieId)
-    res.render('movie/details', {movie});
+    const isCreator = movie.creator && movie.creator.toString() === req.user?.id
+    
+    res.render('movie/details', {movie, isCreator});
    
 ;
 });
@@ -25,8 +27,7 @@ movieController.get('/:movieId/details', async (req, res) => {
 movieController.post('/create', async (req, res) => {
     const newMovie= req.body;
     const userId=req.user?.id;
-    console.log(userId)
-
+   
     await movieService.create(newMovie, userId);
     res.redirect('/')
 });
