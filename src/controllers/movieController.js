@@ -50,7 +50,7 @@ movieController.post('/:movieId/attach-cast', async (req, res) => {
 
     res.redirect(`/movies/${movieId}/details`)
 
-}),
+});
 
 movieController.get('/:movieId/delete', (req, res) => {
     const movieId=req.params.movieId;
@@ -60,13 +60,36 @@ movieController.get('/:movieId/delete', (req, res) => {
     res.redirect('/')
 
 
-}),
+});
 
 movieController.get('/:movieId/edit', async (req,res) => {
     const movieId=req.params.movieId;
-    const movie=await movieService.getOne(movieId)
-    res.render('movie/edit', {movie})
-})
+    const movie=await movieService.getOne(movieId);
+
+    const categories= getCategoriesViewData(movie.category);
+    console.log(movie.category)
+    console.log(categories)
+    res.render('movie/edit', {movie, categories})
+});
+
+function getCategoriesViewData(category) {
+    const categoriesMap = {
+        'tv-show' : 'TV Show',
+        'animation' : 'Animation',
+        'movie' : 'Movie',    
+        'documentary' : 'Documentary',
+        'short-film' : 'Short Film',
+    }
+
+    const categories = Object.keys(categoriesMap).map(value => ({
+        value, 
+        label: categoriesMap[value],
+        selected: value === category.toLowerCase() ? 'selected' : ''
+    }))
+    return categories
+}
+
+
 
 
 export default movieController
