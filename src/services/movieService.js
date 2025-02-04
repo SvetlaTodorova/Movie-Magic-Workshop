@@ -29,11 +29,13 @@ const movieService = {
         const result=Movie.findById(movieId).populate('casts');
         return result
     },
-    create(movieData) { 
+    create(movieData, creatorId) { 
+        console.log('service', creatorId)
         const result= Movie.create({
             ...movieData,
             rating: Number(movieData.rating),
             year: Number(movieData.year),
+            creator: creatorId,
         })
         return result
     },
