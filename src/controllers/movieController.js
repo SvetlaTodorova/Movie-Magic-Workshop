@@ -1,6 +1,7 @@
 import { Router } from "express";
 import movieService from "../services/movieService.js";
 import castService from "../services/castService.js";
+import { isAuth } from "../middleware/authMiddleware.js";
 
 const movieController=Router()
 
@@ -10,7 +11,7 @@ movieController.get('/search', async (req,res) => {
     res.render('search', { movies, filter })
 })
 
-movieController.get('/create', (req, res) => {
+movieController.get('/create', isAuth, (req, res) => {
     res.render('create');
 });
 

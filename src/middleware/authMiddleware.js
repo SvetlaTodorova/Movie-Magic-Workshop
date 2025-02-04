@@ -20,3 +20,10 @@ export default function authMiddleware(req, res, next) {
         return res.redirect("/auth/login"); 
 }
 }
+
+export const isAuth = (req, res, next) => {
+    if(!req.user) {
+        return res.redirect('/auth/login')
+    }
+    next()
+}
