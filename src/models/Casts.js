@@ -4,7 +4,7 @@ const castSchema= new Schema({
     name: {
         type: String,
         required: [true, 'The name is required'],
-        minlength: [5, 'Name should be at least characters long'],
+        minLength: [5, 'Name should be at least characters long'],
         match: [/^[a-zA-Z0-9 ]+$/, 'The name should alphanumeric with whitespaces'],
     },
     age: {

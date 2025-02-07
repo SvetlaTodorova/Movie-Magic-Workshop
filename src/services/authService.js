@@ -7,9 +7,9 @@ const SECRET = process.env.JWT_SECRET || "supersecuresecretkey";
 
 export default {
     async register(userData) {
-        const emailCount= User.countDocument(userData.email);
+        const emailCount= await User.countDocuments({email: userData.email});
         if(emailCount>0) {
-            throw new Error('This email already exists')
+           throw new Error('This email already exists')
         };
 
         if(userData.password !== userData.rePassword) {

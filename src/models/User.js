@@ -6,13 +6,13 @@ const userSchema = new Schema({
         required: true,
         unique: true,
         match: [, 'Incorrect email format'],
-        minlength: [20, 'Email should be at least 20 characters']
+        minLength: [20, 'Email should be at least 20 characters']
     
     },
     password: {
         type: String,
         required: true,
-        minlength: [6, 'The password should be at least 6 characters long'],
+        minLength: [6, 'The password should be at least 6 characters long'],
         match: [/^\w+$/, 'The password is not in the expected pattern']
 
     },
