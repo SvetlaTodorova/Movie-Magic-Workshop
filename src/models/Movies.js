@@ -31,7 +31,7 @@ const movieSchema = new Schema({
         },
         imageUrl: {
             type: String,
-            match: /^https?:\/\//
+            match: [/^https?:\/\//, 'The image should start with http:// or https://'],
         },
         rating: {
             type: Number,
@@ -40,7 +40,7 @@ const movieSchema = new Schema({
         },
         description: {
             type: String,
-            required: true,
+            required: [true, 'The description is required'],
             minlength: [20, 'Description should be at least 20 characters long'],
             match: [/^[a-zA-Z0-9 ]+$/, 'The description sould be alphanumeric and with whitespaces'],
         },
