@@ -2,14 +2,48 @@ import { Schema, model, Types } from "mongoose";
 
 const movieSchema = new Schema({
       
-        title: String,
+        title: {
+            type: String,
+            required: [true, 'Title is required'],
+            minlength: [5, 'Title should be at least 5 characteres long'],
+            match: [/^[a-zA-Z0-9 ]+$/, 'The title sould be alphanumeric and with whitespaces'],
+
+        },
         category: String,
-        genre: String,
-        director: String,
-        year: Number,
-        imageUrl: String,
-        rating: Number,
-        description: String,
+        genre: {
+            type: String,
+            required: [true, 'Genre is required'],
+            minlength: [5, 'Genre should be at least 5 characteres long'],
+            match: [/^[a-zA-Z0-9 ]+$/, 'The genre sould be alphanumeric and with whitespaces'],
+
+        },
+        director:  {
+            type: String,
+            required: [true, 'Director is required'],
+            minlength: [5, 'Director name should be at least 5 characteres long'],
+            match: [/^[a-zA-Z0-9 ]+$/, 'The director name sould be alphanumeric and with whitespaces'],
+
+        },
+        year:  {
+            type: Number,
+            min: 1900, 
+            max: 2024,
+        },
+        imageUrl: {
+            type: String,
+            match: /^https?:\/\//
+        },
+        rating: {
+            type: Number,
+            min: 1,
+            max: 5,
+        },
+        description: {
+            type: String,
+            required: true,
+            minlength: [20, 'Description should be at least 20 characters long'],
+            match: [/^[a-zA-Z0-9 ]+$/, 'The description sould be alphanumeric and with whitespaces'],
+        },
         casts: [{
             type: Types.ObjectId,
             ref: 'Cast'
