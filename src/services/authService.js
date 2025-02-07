@@ -7,7 +7,15 @@ const SECRET = process.env.JWT_SECRET || "supersecuresecretkey";
 
 export default {
     async register(userData) {
-        
+        const emailCount= User.countDocument(userData.email);
+        if(emailCount>0) {
+            throw new Error('This email already exists')
+        };
+
+        if(userData.password !== userData.rePassword) {
+            throw new Error('The passwords mismatch')
+        };
+
         const salt = await bcrypt.genSalt(10)
         userData.password =  await bcrypt.hash(userData.password, salt)
         
